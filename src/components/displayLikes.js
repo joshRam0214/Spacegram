@@ -11,7 +11,8 @@ export default function DisplayLikes(props) {
                 {props.images.map((img) => (
                     <div className="col-3 mb-3 card ImgPost text-dark" key={img.data[0].nasa_id}>
                         <div className='p-2'>
-                            <h6>{img.data[0].title}</h6>
+                            <h5>{img.data[0].title}</h5>
+                            <h6>Date Created: {img.data[0].date_created.substring(0, 10)}</h6>
                         </div>
                         <img src={img.links[0].href} alt={img.data[0].title} className='card-img-top img-fluid' />
                         <div className='buttonContainer d-flex flex-row justify-content-around p-3'>
