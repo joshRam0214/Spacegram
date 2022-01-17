@@ -2,24 +2,20 @@ import React, { useState, useEffect } from 'react';
 import '../styles/App.scss';
 import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
-// import "bootstrap/dist/css/bootstrap.min.css";
-import { FaArrowRight,FaArrowDown } from 'react-icons/fa';
+import { FaArrowRight, FaArrowDown } from 'react-icons/fa';
 
 import BtnComponent from './btnComponent';
-import DisplayMovie from './Displaymovie';
+import DisplayImages from './DisplayImages';
 import DisplayLikes from './displayLikes';
-// import Options from './Options';
 
 function App() {
   const API_URL = 'https://images-api.nasa.gov/';
-  const APP_key = '9vdgsdn5g6SshRXteNbcO3vrxfl2AWNVHv7JGn5A';
-  const [movies, setMovies] = useState([]);
+  // const APP_key = '9vdgsdn5g6SshRXteNbcO3vrxfl2AWNVHv7JGn5A';
+  const [imgList, setImgList] = useState([]);
   const [likeList, setLikeList] = useState([]);
   const [searchImage, setSearch] = useState("");
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
-  const [checkState, setStates] = useState([false, false, false]);
-  const [opts, setOpts] = useState(false);
 
   const filterImageList = (images) => {
     let imgArr = []
@@ -35,10 +31,11 @@ function App() {
 
   const getImage = async (query) => {
     const response = await fetch(`${API_URL}/search?q=${query}`);
+    // const response = await fetch(`${API_URL}/search?q=earth`);
     const data = await response.json();
-    setMovies([]);
+    setImgList([]);
     if (data.collection) {
-      setMovies(filterImageList(data.collection.items));
+      setImgList(filterImageList(data.collection.items));
     }
 
   };
@@ -60,30 +57,43 @@ function App() {
     setSearch('');
   }
 
+  const saveToLocal = (items) => {
+    window.localStorage.clear();
+    window.localStorage.setItem("liked-Images", JSON.stringify(items));
+  }
+
   const addLiked = (image) => {
     const newLikeList = [...likeList, image];
     setLikeList(newLikeList);
+    saveToLocal(newLikeList);
   }
 
   const removeLike = (images) => {
-    const newLikeList = likeList.filter((img) =>
-      img.data[0].nasa_id !== images.data[0].nasa_id
+    const newLikeList = likeList.filter(
+      (img) => img.data[0].nasa_id !== images.data[0].nasa_id
     );
-    // setAlert(true);
     setLikeList(newLikeList);
+    saveToLocal(newLikeList);
   }
-  const likeOpen = () =>{
-    if (!open){
-      return <FaArrowRight/>;
+  const likeOpen = () => {
+    if (!open) {
+      return <FaArrowRight />;
     }
-    return <FaArrowDown/>;
+    return <FaArrowDown />;
   }
+
+  useEffect(() => {
+    if (window.localStorage.getItem('liked-Images')) {
+      const imgLikes = JSON.parse(window.localStorage.getItem('liked-Images'));
+      setLikeList(imgLikes);
+    }
+  }, []);
+
   return (
 
     <div className="App">
       <div className="Header p-3">
         <h1 className="ml-5">Spacegram: NASA Image Library</h1>
-        {/* <Button variant="contained">Hello World</Button> */}
       </div>
       <div className='mx-auto w-75 p-4'>
         <Button
@@ -91,11 +101,11 @@ function App() {
           aria-controls="example-collapse-text"
           aria-expanded={open}
         >
-         {likeOpen()} Liked Images
+          {likeOpen()} Liked Images
         </Button>
         <Collapse in={open}>
           <div className="card p-2 mt-2" id="example-collapse-text">
-          {likeList.length === 0? "No images liked":<DisplayLikes images = {likeList} onClickRemove ={removeLike} removebtn = {BtnComponent}/>}
+            {likeList.length === 0 ? "No images liked" : <DisplayLikes images={likeList} onClickRemove={removeLike} removebtn={BtnComponent} />}
           </div>
         </Collapse>
       </div>
@@ -110,7 +120,7 @@ function App() {
           </div>
         </div>
       </form>
-      <DisplayMovie movies={movies} onClickLike ={addLiked} compareLike={likeList} likedComp ={BtnComponent} />
+      <DisplayImages imgList={imgList} onClickLike={addLiked} compareLike={likeList} likedComp={BtnComponent} />
     </div>
   );
 }
