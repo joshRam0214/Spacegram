@@ -37,7 +37,7 @@ export default function DisplayImages(props) {
                             <h6 className='m-1'><span className="badge badge-pill badge-dark">Tags</span></h6>
                             <div className='d-flex flex-row flex-wrap'>
                                 {img.data[0].keywords.map((tags) =>(
-                                    <h6 className='m-1 card-text'><span className="badgeColor badge badge-pill">{tags}</span></h6>
+                                    <h6 className='m-1 badgeColor badge badge-pill text-break'>{tags}</h6>
                                 ))}
                             </div>
                         </div>
