@@ -1,10 +1,30 @@
-## Hosted at [https://joshramspacegram.netlify.app/](https://joshramspacegram.netlify.app/)
+# Spacegram
 
-<!-- ## The Shoppies: Movie awards for entrepreneurs
-React was used to build this application. The basic functionality was provided at [https://docs.google.com/document/d/1AZO0BZwn1Aogj4f3PDNe1mhq8pKsXZxtrG--EIbP_-w/edit#](https://docs.google.com/document/d/1AZO0BZwn1Aogj4f3PDNe1mhq8pKsXZxtrG--EIbP_-w/edit#). Some additional changes were made to make the UI more appealing. An example would removing bullet points and putting each movie in a box. Also, using a checkbox to give the user the option to see the movie poster that they searched for.
+# Hosted at [https://joshramspacegram.netlify.app/](https://joshramspacegram.netlify.app/)
+---
+## Challenge
+This project aims to make commerce better for everyone, including the whole universe. We must build an application to share photos from one of NASA's image API to achieve this goal.
 
-###
-To learn more on how to create a react app click the link below\
-[Create React App](https://github.com/facebook/create-react-app). -->
+## Technical Requirements
+- Fetch data from one of NASA’s APIs and display the resulting images
+- Display descriptive data for each image (for example: title, date, description, etc.)
+- Like an image
+- Unlike an image
+
+---
+
+## Tech Used
+- React.js
+- Sass
+- Bootstrap
+- Netlify
+- LocalStorage
+
+---
+
+## Features
+- Users can hide and unhide like images to provide more space on the browser to view searched images.
+- Images that the user likes can be saved automatically, so when users decide to leave the page and return, they will see the pictures they have selected.
+- Added a drop-down dialogue to provide more information to the user about the picture.
 
 
