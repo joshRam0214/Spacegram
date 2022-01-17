@@ -40,7 +40,7 @@ function App() {
 
   };
 
-  //Fetch movie data
+  //Fetch Image data
   useEffect(() => {
     if (query !== " ") {
       getImage(query);

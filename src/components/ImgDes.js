@@ -19,11 +19,14 @@ function ImageDescription(props) {
             </Modal.Header>
             <Modal.Body>
                 <img src={props.image.links[0].href} alt={props.image.data[0].title} className='modalImgCard' />
-                <p><b>Description: </b>{props.image.data[0].description}</p>
+                <p>
+                    <b>Photographer: </b>{props.image.data[0].photographer }
+                    <br></br>
+                    <b>Date Created: </b>{props.image.data[0].date_created.substring(0,10)}
+                    <br></br>
+                    <b>Description: </b>{props.image.data[0].description}
+                </p>
             </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
         </Modal>
     );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/App.scss';
 import { FaHeart } from 'react-icons/fa';
 import ImageDescription from './ImgDes';
 export default function DisplayLikes(props) {

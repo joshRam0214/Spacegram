@@ -33,12 +33,14 @@ export default function DisplayImages(props) {
                                 onClickBtn={() => { props.onClickLike(img) }}
                             />
                         </div>
-                        {/* <div className='d-flex flex-row p-2'>
+                        <div className='d-flex flex-row'>
                             <h6 className='m-1'><span className="badge badge-pill badge-dark">Tags</span></h6>
-                            {img.data[0].keywords.map((tags) =>(
-                                <h6 className='m-1 card-text'><span className="badge badge-pill badge-info">{tags}</span></h6>
-                            ))}
-                        </div> */}
+                            <div className='d-flex flex-row flex-wrap'>
+                                {img.data[0].keywords.map((tags) =>(
+                                    <h6 className='m-1 card-text'><span className="badge badge-pill badge-info">{tags}</span></h6>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>
