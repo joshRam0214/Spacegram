@@ -28,6 +28,10 @@ html,body{
         object-fit: cover;
     }
 }
+.badgeColor{
+    background-color: $color2;
+    color: #ffff;
+}
 .modalImgCard{
     width: 100%;
     height: 20vw;
