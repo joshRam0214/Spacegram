@@ -14,8 +14,8 @@ export default function DisplayImages(props) {
         return false;
     }
     const checkTags = (img) => {
-        if (img.data[0].keywords.length != 0) {
-            displayTags(img);
+        if (img.data[0].keywords) {
+           return displayTags(img);
         }
     };
     const displayTags = (img) => {
@@ -24,7 +24,7 @@ export default function DisplayImages(props) {
                 <h6 className='m-1'><span className="badge badge-pill badge-dark">Tags</span></h6>
                 <div className='d-flex flex-row flex-wrap'>
                     {img.data[0].keywords.map((tags) => (
-                        <h6 className='m-1 badgeColor badge badge-pill text-break'>{tags}</h6>
+                        <h6 className='m-1 badgeColor badge badge-pill text-break '>{tags}</h6>
                     ))}
                 </div>
             </div>
